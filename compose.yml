@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    ports:
+      - $MYSQL_DB_LOCAL_PORT:$MYSQL_DB_DOCKER_PORT
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
