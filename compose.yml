@@ -14,8 +14,8 @@ services:
     ports:
       - $MYSQL_DB_LOCAL_PORT:$MYSQL_DB_DOCKER_PORT
     environment:
-      - MYSQL_ROOT_PASSWORD:${MYSQL_DB_PASS}
-      - MYSQL_DATABASE:${MYSQL_DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DB_PASS}
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
     volumes:
       - mysql-data:/var/lib/mysql
 
