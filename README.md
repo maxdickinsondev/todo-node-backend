@@ -9,7 +9,7 @@ cd todo-node-backend
 
 # Configuration
 
-Create a `.env` in the source project like this.
+Create a `.env` file in the source project like this.
 
 ```
 # DATABASE
