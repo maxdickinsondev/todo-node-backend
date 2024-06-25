@@ -27,6 +27,10 @@ NODE_LOCAL_PORT=3333
 NODE_DOCKER_PORT=3333
 ```
 
-# Execution
+# Start application
 
 `docker compose up -d`
+
+# Run migrations
+
+`docker compose exec app npm run migrate`
