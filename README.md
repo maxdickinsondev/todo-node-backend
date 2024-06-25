@@ -43,3 +43,97 @@ POST /tasks
 PUT /tasks/1
 DELETE /tasks/1
 ```
+
+- GET /tasks
+
+**Response**
+
+```
+{
+  tasks: [
+    {
+      id: 1,
+      title: 'Learn Node.js',
+      completed: true,
+    }
+  ]
+}
+```
+
+- POST /tasks
+
+**Payload**
+
+```
+{
+  "title": "Learn Node.js"
+}
+
+```
+**Response**
+
+```
+{
+  task: {
+    id: 1,
+    title: 'Learn Node.js',
+    completed: false
+  }
+}
+
+```
+
+- PUT /tasks/1
+
+**Payload**
+
+```
+{
+  "title": "Learn Node.js",
+  "completed": false
+}
+
+```
+**Response**
+
+```
+{
+  task: {
+    id: 1,
+    title: 'Learn Node.js',
+    completed: false
+  }
+}
+
+```
+or
+
+```
+{
+  "status": 404,
+  "message": "Task not found."
+}
+
+```
+
+- DELETE /tasks/1
+
+**Response**
+
+```
+{
+  "status": 201,
+  "message": "success"
+}
+
+```
+
+or
+
+```
+{
+  "status": 404,
+  "message": "Task not found."
+}
+
+```
