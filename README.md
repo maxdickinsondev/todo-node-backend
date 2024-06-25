@@ -34,3 +34,12 @@ NODE_DOCKER_PORT=3333
 # Run migrations
 
 `docker compose exec app npm run migrate`
+
+# Routes
+
+```
+GET /tasks
+POST /tasks
+PUT /tasks/1
+DELETE /tasks/1
+```
