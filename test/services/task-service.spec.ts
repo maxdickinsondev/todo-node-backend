@@ -7,6 +7,9 @@ const mockKnex = {
   update: jest.fn().mockReturnThis(),
   where: jest.fn().mockReturnThis(),
   del: jest.fn().mockReturnThis(),
+  offset: jest.fn().mockReturnThis(),
+  limit: jest.fn().mockReturnThis(),
+  count: jest.fn().mockReturnValue([{ count: 0 }]),
 };
 
 const mockQueryBuilder = jest.fn().mockImplementation(() => mockKnex);
@@ -28,11 +31,19 @@ describe("TaskService", () => {
         { id: 1, title: "Learn Jest", completed: true },
       ]);
 
-      const tasks = await taskService.find();
+      const tasks = await taskService.find({});
 
-      expect(tasks).toStrictEqual([
-        { id: 1, title: "Learn Jest", completed: true },
-      ]);
+      expect(tasks).toStrictEqual({
+        data: [{ id: 1, title: "Learn Jest", completed: true }],
+        pagination: {
+          page: 1,
+          per_page: 20,
+          offset: 0,
+          next: 2,
+          last_page: 0,
+          total_count: 0,
+        },
+      });
     });
   });
 

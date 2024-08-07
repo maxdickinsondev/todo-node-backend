@@ -1,12 +1,29 @@
 import { Knex } from "knex";
 import { Task } from "../models/task";
 import { AppError } from "../errors/error";
+import { pagination } from "../metadata/pagination/pagination";
+import { IPagination } from "../metadata/pagination/types";
 
 class TaskService {
   constructor(private readonly connection: Knex) {}
 
-  async find() {
-    const tasks: Task[] = await this.connection<Task>("tasks").select("*");
+  async find(query: IPagination) {
+    const count = await this.connection("tasks").count("* as count");
+    const paginate = pagination(query, count[0].count);
+    const tasks: Task[] = await this.connection<Task>("tasks")
+      .offset(paginate.offset)
+      .limit(paginate.per_page)
+      .select("*");
+    return {
+      data: tasks,
+      pagination: paginate,
+    };
+  }
+
+  async findById(id: number) {
+    const tasks: Task[] = await this.connection<Task>("tasks")
+      .where({ id })
+      .select("*");
     return tasks;
   }
 

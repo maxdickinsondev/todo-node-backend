@@ -5,7 +5,14 @@ class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   async getTasks(request: Request, response: Response) {
-    const tasks = await this.taskService.find();
+    const params = request.query;
+    const tasks = await this.taskService.find({ ...params });
+    return response.status(200).json(tasks);
+  }
+
+  async getTaskById(request: Request, response: Response) {
+    const { id } = request.params;
+    const tasks = await this.taskService.findById(Number(id));
     return response.status(200).json({ tasks });
   }
 

@@ -4,6 +4,9 @@ import { taskController } from "./task-controller-factory";
 const getTasks = (request: Request, response: Response) =>
   taskController.getTasks(request, response);
 
+const getTaskById = (request: Request, response: Response) =>
+  taskController.getTaskById(request, response);
+
 const createTasks = (request: Request, response: Response) =>
   taskController.createTasks(request, response);
 
@@ -13,4 +16,4 @@ const updateTask = (request: Request, response: Response) =>
 const deleteTask = (request: Request, response: Response) =>
   taskController.deleteTask(request, response);
 
-export { getTasks, createTasks, updateTask, deleteTask };
+export { getTasks, getTaskById, createTasks, updateTask, deleteTask };
